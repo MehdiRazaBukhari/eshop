@@ -10,7 +10,7 @@ function App() {
     <div className='App'>
       <Header />
       <main>
-        <Container>
+        <Container className='py-3'>
           <HomeScreen />
         </Container>
       </main>

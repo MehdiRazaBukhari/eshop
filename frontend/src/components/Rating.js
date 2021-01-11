@@ -1,9 +1,12 @@
 import React from 'react'
-
-const Rating = ({ rating, count }) => {
+import Star from './Star'
+const Rating = ({ rating, reviewCount }) => {
   return (
     <>
-      {rating} from {count} users.
+      {[...Array(5)].map((e, i) => (
+        <Star rating={rating} index={i} />
+      ))}{' '}
+      {reviewCount} reviews
     </>
   )
 }

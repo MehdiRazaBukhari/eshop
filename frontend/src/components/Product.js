@@ -15,10 +15,10 @@ const Product = ({ product }) => {
         </a>
 
         <Card.Text>
-          <Rating rating={product.rating} count={product.numReviews} />
+          <Rating rating={product.rating} reviewCount={product.numReviews} />
         </Card.Text>
 
-        <Card.Text>${product.price}</Card.Text>
+        <Card.Text as='h3'>${product.price}</Card.Text>
       </Card.Body>
     </Card>
   )
