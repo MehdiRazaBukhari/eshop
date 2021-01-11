@@ -4,18 +4,25 @@ import './App.css'
 import Footer from './components/Footer'
 import Header from './components/Header'
 import HomeScreen from './screens/HomeScreen'
+import ProductScreen from './screens/ProductScreen'
+import Cart from './screens/Cart'
+import Login from './screens/Login'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 function App() {
   return (
-    <div className='App'>
+    <Router>
       <Header />
       <main>
         <Container className='py-3'>
-          <HomeScreen />
+          <Route path='/' component={HomeScreen} exact />
+          <Route path='/product/:id' component={ProductScreen} />
+          <Route path='/cart' component={Cart} />
+          <Route path='/login' component={Login} />
         </Container>
       </main>
       <Footer />
-    </div>
+    </Router>
   )
 }
 
