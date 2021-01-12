@@ -2,7 +2,7 @@ import React from 'react'
 import styles from './Star.module.css'
 const Star = ({ rating, index }) => {
   return (
-    <div className={styles.stars}>
+    <p className={styles.stars}>
       {rating - index >= 0.5 && rating - index < 1 ? (
         <i className={['fas fa-star-half-alt', styles.icon].join(' ')}></i>
       ) : rating - index >= 1 ? (
@@ -10,7 +10,7 @@ const Star = ({ rating, index }) => {
       ) : (
         <i className={['far fa-star', styles.icon].join(' ')}></i>
       )}
-    </div>
+    </p>
   )
 }
 
