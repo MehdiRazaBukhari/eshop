@@ -11,7 +11,7 @@ const HomeScreen = () => {
     const fetchData = async () => {
       let response = []
       try {
-        response = await axios.get('http://localhost:55555')
+        response = await axios.get('http://localhost:55555/products')
         setProducts(response.data.products)
       } catch (error) {
         console.log(error)

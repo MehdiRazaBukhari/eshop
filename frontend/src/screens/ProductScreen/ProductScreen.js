@@ -11,7 +11,7 @@ const ProductScreen = ({ match }) => {
     const fetchData = async (id) => {
       let response = []
       try {
-        response = await axios.get(`http://localhost:55555/${id}`)
+        response = await axios.get(`http://localhost:55555/products/${id}`)
         setProduct(response.data.product)
       } catch (error) {
         console.log(error)
