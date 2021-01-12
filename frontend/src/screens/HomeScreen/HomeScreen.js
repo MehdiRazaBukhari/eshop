@@ -26,12 +26,20 @@ const HomeScreen = () => {
     <>
       <h1>Products</h1>
       <Row>
-        {products.length &&
-          products.map((product) => (
-            <Col sm={2} md={6} lg={4} xl={3} className='py-3' key={product._id}>
-              <Product product={product} />
-            </Col>
-          ))}
+        {products.length
+          ? products.map((product) => (
+              <Col
+                sm={2}
+                md={6}
+                lg={4}
+                xl={3}
+                className='py-3'
+                key={product._id}
+              >
+                <Product product={product} />
+              </Col>
+            ))
+          : null}
       </Row>
     </>
   )

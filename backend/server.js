@@ -1,6 +1,8 @@
 const express = require('express')
 const { products } = require('./data/products.js')
-
+const dotenv = require('dotenv')
+dotenv.config()
+PORT = process.env.PORT
 app = express()
 
 app.use(function (req, res, next) {
@@ -24,4 +26,4 @@ app.get('/:id', function (req, res) {
   res.send({ product: res_product })
 })
 
-app.listen(5555, console.log('listening on port 5555'))
+app.listen(PORT, console.log(`listening on port ${PORT}`))
