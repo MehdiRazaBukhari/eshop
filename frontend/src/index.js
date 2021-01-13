@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom'
 import './index.css'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
-
+import Store from './Redux/Store'
+import { Provider } from 'react-redux'
 // use default bootstrap css, but for it you have to install bootstrap via npm
 // import 'bootstrap/dist/css/bootstrap.min.css'
 
@@ -12,7 +13,9 @@ import './bootstrap.min.css'
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={Store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 )

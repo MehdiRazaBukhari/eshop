@@ -1,7 +1,7 @@
 const express = require('express')
 const dotenv = require('dotenv')
 const Connect_DB = require('./db/Connect_DB')
-const productRouter = require('./Routes/productRouter')
+const productRouter = require('./Routers/productRouter')
 const Set_CORS = require('./config/Set_CORS')
 const {
   RouteNotFound,
