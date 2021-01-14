@@ -1,7 +1,8 @@
 const express = require('express')
 const productRouter = express.Router()
-const Product = require('../db/models/Product')
-const asyncHandler = require('express-async-handler')
+
+const getProduct = require('../controller/getProduct')
+const getProductById = require('../controller/getProductById')
 
 /**
  * Route serving specific product.
@@ -13,13 +14,7 @@ const asyncHandler = require('express-async-handler')
  * @param {string} path - Express path
  * @param {callback} middleware - Express middleware.
  */
-productRouter.get(
-  '/',
-  asyncHandler(async (req, res) => {
-    const products = await Product.find({})
-    res.send({ products })
-  })
-)
+productRouter.route('/').get(getProduct)
 
 /**
  * Route serving specific product.
@@ -32,12 +27,6 @@ productRouter.get(
  * @param {callback} middleware - Express middleware.
  */
 
-productRouter.get(
-  '/:id',
-  asyncHandler(async (req, res) => {
-    const product = await Product.findById(req.params.id)
-    res.send({ product })
-  })
-)
+productRouter.route('/:id').get(getProductById)
 
 module.exports = productRouter
