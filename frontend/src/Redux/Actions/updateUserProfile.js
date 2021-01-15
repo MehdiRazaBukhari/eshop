@@ -1,7 +1,7 @@
 import axios from 'axios'
 
-const getProfile = (token) => async (dispatch) => {
-  dispatch({ type: 'PROFILE_REQUESTED' })
+const updateUserProfile = (token, data) => async (dispatch) => {
+  dispatch({ type: 'PROFILE_UPDATE_REQUEST' })
   try {
     const config = {
       headers: {
@@ -10,15 +10,11 @@ const getProfile = (token) => async (dispatch) => {
       },
     }
 
-    const response = await axios.get(
-      `http://localhost:55555/users/profile`,
-      config
-    )
-    const user = response.data
-    dispatch({ type: 'PROFILE_SUCCESS', payload: user })
+    await axios.post('http://localhost:55555/users/updateProfile', data, config)
+    dispatch({ type: 'PROFILE_UPDATE_SUCCESS' })
   } catch (error) {
     dispatch({
-      type: 'PROFILE_FAIL',
+      type: 'PROFILE_UPDATE_FAIL',
       payload:
         error.response && error.response.data.message
           ? error.response.data.message
@@ -27,4 +23,4 @@ const getProfile = (token) => async (dispatch) => {
   }
 }
 
-export default getProfile
+export default updateUserProfile

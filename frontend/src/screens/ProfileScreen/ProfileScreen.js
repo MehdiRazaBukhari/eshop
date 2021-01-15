@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react'
 import { Row, Col, Form, Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import getProfile from '../../Redux/Actions/getProfile'
+import updateUserProfile from '../../Redux/Actions/updateUserProfile'
+
 const ProfileScreen = ({ history }) => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
@@ -12,6 +14,10 @@ const ProfileScreen = ({ history }) => {
   const [passwordError, setPasswordError] = useState('')
 
   const { loading, profile, error } = useSelector((state) => state.profile)
+  const { update_loading, update_success, update_error } = useSelector(
+    (state) => state.profile_update
+  )
+
   const { user } = useSelector((state) => state.loggedUser)
   const dispatch = useDispatch()
   const handleName = (e) => {
@@ -37,6 +43,29 @@ const ProfileScreen = ({ history }) => {
       setPasswordError('Password fields must match!')
     } else {
       setPasswordError('')
+
+      if (user && user.token) {
+        let newData
+        if (name.length && email.length && password.length) {
+          newData = { name, email, password }
+        } else if (name.length && email.length) {
+          newData = { name, email }
+        } else if (name.length && password.length) {
+          newData = { name, password }
+        } else if (email.length && password.length) {
+          newData = { email, password }
+        } else if (name.length) {
+          newData = { name }
+        } else if (email.length) {
+          newData = { email }
+        } else if (password.length) {
+          newData(password)
+        }
+
+        dispatch(updateUserProfile(user.token, newData))
+      } else {
+        history.push('/login?redirect=profile')
+      }
     }
   }
 
@@ -64,6 +93,11 @@ const ProfileScreen = ({ history }) => {
             <Message variant='warning'>{error}</Message>
           ) : (
             <>
+              {update_success ? (
+                <Message variant='success'>Profile updated successfuly</Message>
+              ) : null}
+              {update_loading ? <Loading type='ThreeDots' height='20' /> : null}
+              {update_error ? <Message>{update_error}</Message> : null}
               {passwordError.length ? (
                 <Message variant='warning'>{passwordError}</Message>
               ) : null}
