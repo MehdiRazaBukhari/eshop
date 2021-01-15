@@ -9,6 +9,7 @@ import CartScreen from './screens/CartScreen/CartScreen'
 import LoginScreen from './screens/LoginScreen/LoginScreen'
 import RegisterScreen from './screens/RegisterScreen/RegisterScreen'
 import RegSuccessScreen from './screens/RegSuccessScreen/RegSuccessScreen'
+import ProfileScreen from './screens/ProfileScreen/ProfileScreen'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
           <Route path='/login' component={LoginScreen} />
           <Route path='/register' component={RegisterScreen} />
           <Route path='/rsuccess' component={RegSuccessScreen} />
+          <Route path='/profile' component={ProfileScreen} />
         </Container>
       </main>
       <Footer />
