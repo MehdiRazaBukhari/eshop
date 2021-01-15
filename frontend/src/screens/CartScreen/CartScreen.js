@@ -1,7 +1,7 @@
 import React from 'react'
 import { Col, ListGroup, Row, Button } from 'react-bootstrap'
 import CartItem from '../../components/CartItem/CartItem'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 const CartScreen = ({ history }) => {
   const { cartItems } = useSelector((state) => state.cart)
   const CheckOutHandler = () => {

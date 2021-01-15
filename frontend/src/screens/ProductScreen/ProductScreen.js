@@ -6,6 +6,8 @@ import styles from './productScreen.module.css'
 import getProductDetail from '../../Redux/Actions/getProductDetail'
 import { useDispatch, useSelector } from 'react-redux'
 import addToCart from '../../Redux/Actions/addToCart'
+import Loading from '../../components/Loading/Loading'
+import Message from '../../components/Message/Message'
 const ProductScreen = ({ match }) => {
   const productDetail = useSelector((state) => state.productDetail)
   const { loading, product, error } = productDetail
@@ -23,9 +25,11 @@ const ProductScreen = ({ match }) => {
         </Button>
       </Link>
       {loading ? (
-        <div>Loading</div>
+        <div className='d-flex justify-content-center'>
+          <Loading />
+        </div>
       ) : error ? (
-        <div>Error</div>
+        <Message variant='dark'>{error}</Message>
       ) : (
         <Row>
           <Col sm={12} md={6} lg={6} xl={6}>

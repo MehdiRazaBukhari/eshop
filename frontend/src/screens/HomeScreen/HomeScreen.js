@@ -3,6 +3,8 @@ import { Col, Row } from 'react-bootstrap'
 import Product from '../../components/Product/Product'
 import { useDispatch, useSelector } from 'react-redux'
 import getProductsList from '../../Redux/Actions/getProductsList'
+import Loading from '../../components/Loading/Loading'
+import Message from '../../components/Message/Message'
 const HomeScreen = () => {
   const productList = useSelector((state) => state.productList)
   const { loading, products, error } = productList
@@ -15,9 +17,11 @@ const HomeScreen = () => {
     <>
       <h1>Products</h1>
       {loading ? (
-        <div>Loading</div>
+        <div className='d-flex justify-content-center'>
+          <Loading />
+        </div>
       ) : error ? (
-        <div>Error</div>
+        <Message variant='dark'>{error}</Message>
       ) : (
         <Row>
           {products.length

@@ -7,6 +7,7 @@ import HomeScreen from './screens/HomeScreen/HomeScreen'
 import ProductScreen from './screens/ProductScreen/ProductScreen'
 import CartScreen from './screens/CartScreen/CartScreen'
 import LoginScreen from './screens/LoginScreen/LoginScreen'
+import RegisterScreen from './screens/RegisterScreen/RegisterScreen'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 function App() {
