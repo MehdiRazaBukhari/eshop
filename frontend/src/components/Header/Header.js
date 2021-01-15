@@ -10,6 +10,7 @@ const Header = () => {
   const logoutHandler = () => {
     dispatch(logoutUser())
   }
+
   return (
     <Navbar bg='dark' expand='lg' variant='dark'>
       <Container>

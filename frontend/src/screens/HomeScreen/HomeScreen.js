@@ -15,7 +15,6 @@ const HomeScreen = () => {
 
   return (
     <>
-      <h1>Products</h1>
       {loading ? (
         <div className='d-flex justify-content-center'>
           <Loading />
@@ -23,22 +22,26 @@ const HomeScreen = () => {
       ) : error ? (
         <Message variant='dark'>{error}</Message>
       ) : (
-        <Row>
-          {products.length
-            ? products.map((product) => (
-                <Col
-                  sm={2}
-                  md={6}
-                  lg={4}
-                  xl={3}
-                  className='py-3'
-                  key={product._id}
-                >
-                  <Product product={product} />
-                </Col>
-              ))
-            : null}
-        </Row>
+        <>
+          <h1>Products</h1>
+
+          <Row>
+            {products.length
+              ? products.map((product) => (
+                  <Col
+                    sm={2}
+                    md={6}
+                    lg={4}
+                    xl={3}
+                    className='py-3'
+                    key={product._id}
+                  >
+                    <Product product={product} />
+                  </Col>
+                ))
+              : null}
+          </Row>
+        </>
       )}
     </>
   )

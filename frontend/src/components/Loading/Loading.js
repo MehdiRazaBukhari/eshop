@@ -11,7 +11,6 @@ const Loading = ({ type, height, width, timeout }) => {
       height={height}
       width={width}
       timeout={timeout}
-      //   timeout={3000} //3 secs
     />
   )
 }
@@ -20,7 +19,7 @@ Loading.defaultProps = {
   type: 'Puff',
   height: '100',
   width: '100',
-  timeout: '0',
+  timeout: 0,
 }
 
 export default Loading
