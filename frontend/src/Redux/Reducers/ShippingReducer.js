@@ -1,7 +1,7 @@
-const ShippingReducer = (state = { loggedIn: false }, action) => {
+const ShippingReducer = (state = {}, action) => {
   switch (action.type) {
-    case 'LOGGED_IN':
-      return { loggedIn: true }
+    case 'SAVE_SHIPPING_ADDRESS':
+      return action.payload
 
     default:
       return state

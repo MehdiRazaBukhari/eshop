@@ -11,6 +11,8 @@ import RegisterScreen from './screens/RegisterScreen/RegisterScreen'
 import RegSuccessScreen from './screens/RegSuccessScreen/RegSuccessScreen'
 import ProfileScreen from './screens/ProfileScreen/ProfileScreen'
 import ShippingScreen from './screens/ShippingScreen/ShippingScreen'
+import PaymentScreen from './screens/PaymentScreen/PaymentScreen'
+import PlaceOrder from './screens/PlaceOrder/PlaceOrder'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 function App() {
@@ -27,6 +29,8 @@ function App() {
           <Route path='/rsuccess' component={RegSuccessScreen} />
           <Route path='/profile' component={ProfileScreen} />
           <Route path='/shipping' component={ShippingScreen} />
+          <Route path='/payment' component={PaymentScreen} />
+          <Route path='/placeorder' component={PlaceOrder} />
         </Container>
       </main>
       <Footer />

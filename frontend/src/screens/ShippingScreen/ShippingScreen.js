@@ -1,15 +1,38 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Button, Col, Form, Row } from 'react-bootstrap'
-import { useSelector } from 'react-redux'
-import Loading from '../../components/Loading/Loading'
+import FormContainer from '../../components/FormContainer/FormContainer'
+import { useSelector, useDispatch } from 'react-redux'
+import saveShippingAddress from '../../Redux/Actions/saveShippingAddress'
+import CheckoutSteps from '../../components/CheckoutSteps/CheckoutSteps'
 const ShippingScreen = ({ history }) => {
   const { user } = useSelector((state) => state.loggedUser)
+  const shippingAddress = useSelector((state) => state.shippingAddress)
 
-  const handleAddress = () => {}
-  const handleCity = () => {}
-  const handlePostalCode = () => {}
-  const handleCountry = () => {}
-  const handleSubmit = () => {}
+  const [address, setAddress] = useState(shippingAddress.address)
+  const [city, setCity] = useState(shippingAddress.city)
+  const [postalCode, setPostalCode] = useState(shippingAddress.postalCode)
+  const [country, setCountry] = useState(shippingAddress.city)
+
+  const dispatch = useDispatch()
+
+  const handleAddress = (e) => {
+    setAddress(e.target.value)
+  }
+  const handleCity = (e) => {
+    setCity(e.target.value)
+  }
+  const handlePostalCode = (e) => {
+    setPostalCode(e.target.value)
+  }
+  const handleCountry = (e) => {
+    setCountry(e.target.value)
+  }
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    let shippingAddress = { address, city, postalCode, country }
+    dispatch(saveShippingAddress(shippingAddress))
+    history.push('/payment')
+  }
 
   useEffect(() => {
     if (!user || !user.token) {
@@ -19,59 +42,61 @@ const ShippingScreen = ({ history }) => {
   }, [history, user])
   return (
     <>
-      {!user || !user.token ? (
-        <Loading />
-      ) : (
-        <>
-          <Row className='mt-5'>
-            <Col sm={12} md={6} lg={6} xl={6}>
-              <h2>SHIPPING</h2>
-              <Form className='mt-4'>
-                <Form.Group>
-                  <Form.Label>Address</Form.Label>
-                  <Form.Control
-                    type='address'
-                    placeholder='Address'
-                    onChange={handleAddress}
-                  />
-                </Form.Group>
+      {!user ? null : (
+        <FormContainer>
+          <CheckoutSteps one={false} two={false} />
+          <Form onSubmit={handleSubmit} className='mt-5'>
+            <h1>Shipping</h1>
 
-                <Form.Group>
-                  <Form.Label>City</Form.Label>
-                  <Form.Control
-                    type='city'
-                    placeholder='City'
-                    onChange={handleCity}
-                  />
-                </Form.Group>
+            <Form.Group controlId='address'>
+              <Form.Label>Address </Form.Label>
+              <Form.Control
+                type='text'
+                placeholder='Enter Address'
+                value={address}
+                required
+                onChange={handleAddress}
+              ></Form.Control>
+            </Form.Group>
 
-                <Form.Group>
-                  <Form.Label>Postal Code</Form.Label>
-                  <Form.Control
-                    type='postalCode'
-                    placeholder='Postal Code'
-                    onChange={handlePostalCode}
-                  />
-                </Form.Group>
+            <Form.Group controlId='city'>
+              <Form.Label>City </Form.Label>
+              <Form.Control
+                type='text'
+                placeholder='Enter City'
+                value={city}
+                required
+                onChange={handleCity}
+              ></Form.Control>
+            </Form.Group>
 
-                <Form.Group>
-                  <Form.Label>Country</Form.Label>
-                  <Form.Control
-                    type='country'
-                    placeholder='Country'
-                    onChange={handleCountry}
-                  />
-                </Form.Group>
+            <Form.Group controlId='postalCode'>
+              <Form.Label>Postal Code </Form.Label>
+              <Form.Control
+                type='text'
+                placeholder='Enter postal code'
+                value={postalCode}
+                required
+                onChange={handlePostalCode}
+              ></Form.Control>
+            </Form.Group>
 
-                <div className='d-flex justify-content-end'>
-                  <Button variant='dark' onClick={handleSubmit}>
-                    Continue
-                  </Button>
-                </div>
-              </Form>
-            </Col>
-          </Row>
-        </>
+            <Form.Group controlId='country'>
+              <Form.Label>Country </Form.Label>
+              <Form.Control
+                type='text'
+                placeholder='Enter Country'
+                value={country}
+                required
+                onChange={handleCountry}
+              ></Form.Control>
+            </Form.Group>
+
+            <Button type='submit' variant='primary'>
+              Continue
+            </Button>
+          </Form>
+        </FormContainer>
       )}
     </>
   )
