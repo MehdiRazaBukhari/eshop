@@ -1,6 +1,8 @@
 import axios from 'axios'
 
-const getProfile = (token) => async (dispatch) => {
+const getProfile = () => async (dispatch, getState) => {
+  const { token } = getState().loggedUser.user
+
   dispatch({ type: 'PROFILE_REQUESTED' })
   try {
     const config = {

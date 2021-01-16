@@ -37,9 +37,9 @@ const Header = () => {
                   <NavDropdown.Item>My Reviews</NavDropdown.Item>
                 </LinkContainer>
 
-                <NavDropdown.Item onClick={logoutHandler}>
-                  Logout
-                </NavDropdown.Item>
+                <LinkContainer to='/' onClick={logoutHandler}>
+                  <NavDropdown.Item>Logout</NavDropdown.Item>
+                </LinkContainer>
               </NavDropdown>
             ) : (
               <LinkContainer to='/login'>

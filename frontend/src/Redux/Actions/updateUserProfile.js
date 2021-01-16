@@ -1,6 +1,8 @@
 import axios from 'axios'
 
-const updateUserProfile = (token, data) => async (dispatch) => {
+const updateUserProfile = (data) => async (dispatch, getState) => {
+  const { token } = getState().loggedUser.user
+
   dispatch({ type: 'PROFILE_UPDATE_REQUEST' })
   try {
     const config = {

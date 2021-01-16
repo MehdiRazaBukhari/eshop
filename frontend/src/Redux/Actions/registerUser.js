@@ -8,8 +8,9 @@ const reisterUser = (name, email, password) => async (dispatch, getState) => {
       email,
       password,
     })
-    const user = response.data
-    dispatch({ type: 'REGISTRATION_SUCCESS' })
+    if (response.data) {
+      dispatch({ type: 'REGISTRATION_SUCCESS' })
+    }
   } catch (error) {
     dispatch({
       type: 'REGISTRATION_FAILED',

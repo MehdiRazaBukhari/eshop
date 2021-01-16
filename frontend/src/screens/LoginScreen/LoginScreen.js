@@ -8,7 +8,9 @@ import { Link } from 'react-router-dom'
 const LoginScreen = ({ history, location }) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const { loading, error, user } = useSelector((state) => state.loggedUser)
+  const { loading, error, user, loggedIn } = useSelector(
+    (state) => state.loggedUser
+  )
   const [inputErrorMessage, setInputErrorMessage] = useState('')
   const dispatch = useDispatch()
 
@@ -41,10 +43,10 @@ const LoginScreen = ({ history, location }) => {
   }
 
   useEffect(() => {
-    if (user && user.name) {
+    if (loggedIn) {
       history.push(redirect)
     }
-  }, [user, history, redirect])
+  }, [loggedIn, history, redirect])
   return (
     <>
       <Row className='mt-5'>

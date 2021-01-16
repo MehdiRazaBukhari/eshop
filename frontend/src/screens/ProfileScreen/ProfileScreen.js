@@ -5,6 +5,7 @@ import { Row, Col, Form, Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import getProfile from '../../Redux/Actions/getProfile'
 import updateUserProfile from '../../Redux/Actions/updateUserProfile'
+import deleteStoredProfile from '../../Redux/Actions/deleteStoredProfile'
 
 const ProfileScreen = ({ history }) => {
   const [name, setName] = useState('')
@@ -62,7 +63,7 @@ const ProfileScreen = ({ history }) => {
           newData(password)
         }
 
-        dispatch(updateUserProfile(user.token, newData))
+        dispatch(updateUserProfile(newData))
       } else {
         history.push('/login?redirect=profile')
       }
@@ -70,19 +71,19 @@ const ProfileScreen = ({ history }) => {
   }
 
   useEffect(() => {
-    if (profile) {
+    if (user && user.token && profile) {
       setName(profile.name)
       setEmail(profile.email)
     }
-  }, [profile])
+  }, [profile, user])
 
   useEffect(() => {
-    if (user && user.token) {
-      dispatch(getProfile(user.token))
-    } else {
+    if (user && user.token && !profile) {
+      dispatch(getProfile())
+    } else if (!user || !user.token) {
       history.push('/login?redirect=profile')
     }
-  }, [history, user, dispatch])
+  }, [history, dispatch, user, profile])
   return (
     <>
       <Row className='mt-5'>

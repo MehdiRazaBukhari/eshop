@@ -29,7 +29,7 @@ const HomeScreen = () => {
             {products.length
               ? products.map((product) => (
                   <Col
-                    sm={2}
+                    sm={12}
                     md={6}
                     lg={4}
                     xl={3}
