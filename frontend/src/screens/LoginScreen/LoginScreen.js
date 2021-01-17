@@ -58,7 +58,7 @@ const LoginScreen = ({ history, location }) => {
           </div>
         )}
 
-        {error && <Message variant='warning'>{error}</Message>}
+        {error && <Message variant='danger'>{error}</Message>}
         {inputErrorMessage.length > 0 && (
           <Message variant='warning'>{inputErrorMessage}</Message>
         )}

@@ -29,7 +29,7 @@ const ProductScreen = ({ match }) => {
           <Loading />
         </div>
       ) : error ? (
-        <Message variant='dark'>{error}</Message>
+        <Message variant='danger'>{error}</Message>
       ) : (
         <Row>
           <Col sm={12} md={6} lg={6} xl={6}>

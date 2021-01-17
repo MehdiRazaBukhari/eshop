@@ -46,8 +46,8 @@ const RegisterScreen = ({ history }) => {
       <Row className='mt-5'>
         <Col sm={12} md={6} lg={6} xl={6}>
           {loading && <Loading />}
-          {error && <Message>{error}</Message>}
-          {inputError && <Message variant='warning'>{inputError}</Message>}
+          {error && <Message variant='danger'>{error}</Message>}
+          {inputError && <Message variant='danger'>{inputError}</Message>}
           <Form>
             <Form.Group>
               <Form.Label>Name</Form.Label>

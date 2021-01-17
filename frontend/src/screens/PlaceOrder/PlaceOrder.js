@@ -1,14 +1,33 @@
-import { useEffect, useState } from 'react'
-import { Button, Col, Container, Form, ListGroup, Row } from 'react-bootstrap'
+import { useEffect } from 'react'
+import { Button, Col, Container, ListGroup, Row } from 'react-bootstrap'
 import FormContainer from '../../components/FormContainer/FormContainer'
 import { useSelector, useDispatch } from 'react-redux'
-import setPaymentMethod from '../../Redux/Actions/setPaymentMethod'
 import CheckoutSteps from '../../components/CheckoutSteps/CheckoutSteps'
 import CartItem from '../../components/CartItem/CartItem'
+import addOrder from '../../Redux/Actions/addOrder'
+import Message from '../../components/Message/Message'
+
 const PlaceOrder = ({ history }) => {
   const { user } = useSelector((state) => state.loggedUser)
   const { paymentMethod } = useSelector((state) => state.paymentMethod)
-  const { cartItems } = useSelector((state) => state.cart)
+  const cart = useSelector((state) => state.cart)
+  const { cartItems } = cart
+
+  const addDecimals = (num) => {
+    return (Math.round(num * 100) / 100).toFixed(2)
+  }
+  // Charges
+  cart.itemsPrice = addDecimals(
+    cart.cartItems.reduce((acc, item) => acc + item.price * item.qty, 0)
+  )
+
+  cart.shippingPrice = addDecimals(cart.itemsPrice > 100 ? 0 : 100)
+  cart.taxPrice = addDecimals(Number((0.15 * cart.itemsPrice).toFixed(2)))
+  cart.totalPrice = (
+    Number(cart.itemsPrice) +
+    Number(cart.shippingPrice) +
+    Number(cart.taxPrice)
+  ).toFixed(2)
 
   const { address, city, postalCode, country } = useSelector(
     (state) => state.shippingAddress
@@ -16,9 +35,28 @@ const PlaceOrder = ({ history }) => {
 
   const dispatch = useDispatch()
 
+  const addedOrder = useSelector((state) => state.addOrder)
+  const { order, success, error } = addedOrder
+
+  useEffect(() => {
+    if (success) {
+      history.push(`/order/${order._id}`)
+    }
+  }, [history, order, success])
+
   const handleSubmit = (e) => {
     e.preventDefault()
-    // history.push('/placeorder')
+    dispatch(
+      addOrder({
+        orderItems: cartItems,
+        paymentMethod: cart.paymentMethod,
+        itemsPrice: cart.itemsPrice,
+        shippingAddress: { address, city, postalCode, country },
+        shippingPrice: cart.shippingPrice,
+        taxPrice: cart.taxPrice,
+        totalPrice: cart.totalPrice,
+      })
+    )
   }
 
   useEffect(() => {
@@ -83,32 +121,39 @@ const PlaceOrder = ({ history }) => {
                   <ListGroup.Item>
                     <Row>
                       <Col>Items</Col>
-                      <Col>$6787</Col>
+                      <Col>${cart.itemsPrice}</Col>
                     </Row>
                   </ListGroup.Item>
 
                   <ListGroup.Item>
                     <Row>
                       <Col>Shipping</Col>
-                      <Col>$6787</Col>
+                      <Col>${cart.shippingPrice}</Col>
                     </Row>
                   </ListGroup.Item>
 
                   <ListGroup.Item>
                     <Row>
                       <Col>Tax</Col>
-                      <Col>$6787</Col>
+                      <Col>${cart.taxPrice}</Col>
                     </Row>
                   </ListGroup.Item>
 
                   <ListGroup.Item className='font-weight-bold'>
                     <Row>
                       <Col>Total</Col>
-                      <Col>$6787</Col>
+                      <Col>${cart.totalPrice}</Col>
                     </Row>
                   </ListGroup.Item>
 
-                  <Button variant='dark'>Place Order</Button>
+                  {error ? (
+                    <ListGroup.Item>
+                      <Message variant='danger'>{error}</Message>
+                    </ListGroup.Item>
+                  ) : null}
+                  <Button variant='dark' onClick={handleSubmit}>
+                    Place Order
+                  </Button>
                 </ListGroup>
               </Col>
             </Row>

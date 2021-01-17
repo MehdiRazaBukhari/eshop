@@ -91,16 +91,18 @@ const ProfileScreen = ({ history }) => {
           {loading ? (
             <Loading />
           ) : error ? (
-            <Message variant='warning'>{error}</Message>
+            <Message variant='danger'>{error}</Message>
           ) : (
             <>
               {update_success ? (
                 <Message variant='success'>Profile updated successfuly</Message>
               ) : null}
               {update_loading ? <Loading type='ThreeDots' height='20' /> : null}
-              {update_error ? <Message>{update_error}</Message> : null}
+              {update_error ? (
+                <Message variant='danger'>{update_error}</Message>
+              ) : null}
               {passwordError.length ? (
-                <Message variant='warning'>{passwordError}</Message>
+                <Message variant='danger'>{passwordError}</Message>
               ) : null}
               <Form>
                 <Form.Group>

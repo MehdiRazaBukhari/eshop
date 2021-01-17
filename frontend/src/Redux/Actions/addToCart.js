@@ -9,8 +9,8 @@ const addToCart = (id, qty) => async (dispatch, getState) => {
       product: product._id,
       name: product.name,
       image: product.image,
-      price: product.price,
-      countInStock: product.countInStock,
+      price: Number(product.price),
+      countInStock: Number(product.countInStock),
       qty,
     },
   })

@@ -20,7 +20,7 @@ const HomeScreen = () => {
           <Loading />
         </div>
       ) : error ? (
-        <Message variant='dark'>{error}</Message>
+        <Message variant='danger'>{error}</Message>
       ) : (
         <>
           <h1>Products</h1>
