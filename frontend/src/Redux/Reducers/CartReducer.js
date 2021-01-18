@@ -27,6 +27,9 @@ const cartReducer = (state = { cartItems: [] }, action) => {
         ...state,
         cartItems: state.cartItems.filter((item) => item.product !== itemToDel),
       }
+
+    case 'RESET_CART':
+      return { cartItems: [] }
     default:
       return state
   }

@@ -6,6 +6,7 @@ import CheckoutSteps from '../../components/CheckoutSteps/CheckoutSteps'
 import CartItem from '../../components/CartItem/CartItem'
 import addOrder from '../../Redux/Actions/addOrder'
 import Message from '../../components/Message/Message'
+import resetCart from '../../Redux/Actions/resetCart'
 
 const PlaceOrder = ({ history }) => {
   const { user } = useSelector((state) => state.loggedUser)
@@ -40,16 +41,17 @@ const PlaceOrder = ({ history }) => {
 
   useEffect(() => {
     if (success) {
+      dispatch(resetCart())
       history.push(`/order/${order._id}`)
     }
-  }, [history, order, success])
+  }, [history, order, success, dispatch])
 
   const handleSubmit = (e) => {
     e.preventDefault()
     dispatch(
       addOrder({
         orderItems: cartItems,
-        paymentMethod: cart.paymentMethod,
+        paymentMethod: paymentMethod,
         itemsPrice: cart.itemsPrice,
         shippingAddress: { address, city, postalCode, country },
         shippingPrice: cart.shippingPrice,
@@ -82,7 +84,7 @@ const PlaceOrder = ({ history }) => {
                     <div className='ml-3'>
                       <p>{address}</p>
                       <p>
-                        {city} {'-'}
+                        {city} {' - '}
                         {postalCode}
                       </p>
                       <p>{country}</p>

@@ -13,6 +13,8 @@ import ProfileScreen from './screens/ProfileScreen/ProfileScreen'
 import ShippingScreen from './screens/ShippingScreen/ShippingScreen'
 import PaymentScreen from './screens/PaymentScreen/PaymentScreen'
 import PlaceOrder from './screens/PlaceOrder/PlaceOrder'
+import OrderById from './screens/OrderById/OrderById'
+import MyOrders from './screens/MyOrders/MyOrders'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 function App() {
@@ -31,6 +33,8 @@ function App() {
           <Route path='/shipping' component={ShippingScreen} />
           <Route path='/payment' component={PaymentScreen} />
           <Route path='/placeorder' component={PlaceOrder} />
+          <Route path='/order/:id' component={OrderById} />
+          <Route path='/myorders' component={MyOrders} />
         </Container>
       </main>
       <Footer />

@@ -42,7 +42,10 @@ const orderSchema = mongoose.Schema(
       required: true,
       default: 0.0,
     },
-
+    paymentMethod: {
+      type: String,
+      required: true,
+    },
     shippingPrice: {
       type: Number,
       required: true,
@@ -50,6 +53,12 @@ const orderSchema = mongoose.Schema(
     },
 
     totalPrice: {
+      type: Number,
+      required: true,
+      default: 0.0,
+    },
+
+    itemsPrice: {
       type: Number,
       required: true,
       default: 0.0,

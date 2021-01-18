@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 import deleteFromCart from '../../Redux/Actions/deleteFromCart'
 const { ListGroup, Row, Col, Image, Form, Button } = require('react-bootstrap')
 
-const CartItem = ({ item }) => {
+const CartItem = ({ item, fixed }) => {
   const dispatch = useDispatch()
 
   const handleItemDelete = () => {
@@ -35,6 +35,7 @@ const CartItem = ({ item }) => {
           <Col sm={2} md={2} lg={2} xl={2}>
             <Form.Control
               as='select'
+              disabled={fixed}
               onChange={(e) => {
                 dispatch(addToCart(item.product, Number(e.target.value)))
               }}
@@ -48,7 +49,7 @@ const CartItem = ({ item }) => {
             </Form.Control>
           </Col>
           <Col sm={1} md={1} lg={1} xl={1}>
-            <Button variant='light' onClick={handleItemDelete}>
+            <Button variant='light' onClick={handleItemDelete} disabled={fixed}>
               <i className='fas fa-trash'></i>
             </Button>
           </Col>
@@ -57,5 +58,7 @@ const CartItem = ({ item }) => {
     </ListGroup>
   )
 }
-
+CartItem.setDefaultProps = {
+  fixed: false,
+}
 export default CartItem

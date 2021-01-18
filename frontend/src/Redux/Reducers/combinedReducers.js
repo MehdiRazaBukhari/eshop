@@ -9,6 +9,9 @@ import profileUpdateReducer from './profileUpdateReducer'
 import ShippingReducer from './ShippingReducer'
 import paymentMethod from './paymentMethodReducer'
 import addOrderReducer from './addOrderReducer'
+import orderByIdReducer from './orderByIdReducer'
+import payOrderReducer from './paymentMethodReducer'
+import myOrdersReducer from './myOrdersReducer'
 const reducer = combineReducers({
   productList: productListReducer,
   productDetail: productDetailReducer,
@@ -20,6 +23,9 @@ const reducer = combineReducers({
   shippingAddress: ShippingReducer,
   paymentMethod: paymentMethod,
   addOrder: addOrderReducer,
+  orderById: orderByIdReducer,
+  payOrder: payOrderReducer,
+  myOrders: myOrdersReducer,
 })
 
 export default reducer
