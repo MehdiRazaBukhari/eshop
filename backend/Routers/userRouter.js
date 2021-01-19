@@ -5,6 +5,7 @@ const getProfile = require('../controller/getProfile')
 const verifyToken = require('../utils/verifyToken')
 const registerUser = require('../controller/registerUser')
 const updateProfile = require('../controller/updateProfile')
+
 /**
  * Route serving specific product.
  * Full path : user/login

@@ -7,7 +7,7 @@ const orderRouter = require('./Routers/orderRouter')
 const Set_CORS = require('./config/Set_CORS')
 var bodyParser = require('body-parser')
 var jsonParser = bodyParser.json()
-
+const adminRouter = require('./Routers/adminRouter')
 const {
   RouteNotFound,
   ServerError,
@@ -28,6 +28,7 @@ app.get('/', function (req, res) {
 app.use('/products', productRouter)
 app.use('/users', userRouter)
 app.use('/orders', orderRouter)
+app.use('/admin', adminRouter)
 
 app.use(ServerError)
 app.use(RouteNotFound)

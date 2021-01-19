@@ -60,7 +60,7 @@ const ProfileScreen = ({ history }) => {
         } else if (email.length) {
           newData = { email }
         } else if (password.length) {
-          newData(password)
+          newData = { password }
         }
 
         dispatch(updateUserProfile(newData))
