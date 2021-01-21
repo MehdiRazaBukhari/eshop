@@ -19,7 +19,8 @@ import UsersScreen from './screens/UsersScreen/UsersScreen'
 import ProfileByAdminScreen from './screens/ProfileByAdminScreen/ProfileByAdminScreen'
 import ProductsScreenAdmin from './screens/ProductsScreenAdmin/ProductsScreenAdmin'
 import ProductEditScreen from './screens/ProductEditScreen/ProductEditScreen'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import AddProductScreen from './screens/AddProductScreen/AddProductScreen'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 function App() {
   return (
@@ -27,26 +28,37 @@ function App() {
       <Header />
       <main>
         <Container className='py-3'>
-          <Route path='/' component={HomeScreen} exact />
-          <Route path='/product/:id' component={ProductScreen} />
-          <Route path='/cart/:id?' component={CartScreen} />
-          <Route path='/login' component={LoginScreen} />
-          <Route path='/register' component={RegisterScreen} />
-          <Route path='/rsuccess' component={RegSuccessScreen} />
-          <Route path='/profile' component={ProfileScreen} />
-          <Route path='/shipping' component={ShippingScreen} />
-          <Route path='/payment' component={PaymentScreen} />
-          <Route path='/placeorder' component={PlaceOrder} />
-          <Route path='/order/:id' component={OrderById} />
-          <Route path='/myorders' component={MyOrders} />
-          <Route path='/admin/users' component={UsersScreen} exact />
-          <Route path='/admin/users/:id' component={ProfileByAdminScreen} />
-          <Route path='/admin/products' component={ProductsScreenAdmin} exact />
-          <Route
-            path='/admin/products/:id'
-            component={ProductEditScreen}
-            exact
-          />
+          <Switch>
+            <Route path='/' component={HomeScreen} exact />
+            <Route path='/product/:id' component={ProductScreen} />
+            <Route path='/cart/:id?' component={CartScreen} />
+            <Route path='/login' component={LoginScreen} />
+            <Route path='/register' component={RegisterScreen} />
+            <Route path='/rsuccess' component={RegSuccessScreen} />
+            <Route path='/profile' component={ProfileScreen} />
+            <Route path='/shipping' component={ShippingScreen} />
+            <Route path='/payment' component={PaymentScreen} />
+            <Route path='/placeorder' component={PlaceOrder} />
+            <Route path='/order/:id' component={OrderById} />
+            <Route path='/myorders' component={MyOrders} />
+            <Route path='/admin/users' component={UsersScreen} exact />
+            <Route path='/admin/users/:id' component={ProfileByAdminScreen} />
+            <Route
+              path='/admin/products/add'
+              component={AddProductScreen}
+              exact
+            />
+            <Route
+              path='/admin/products/:id'
+              component={ProductEditScreen}
+              exact
+            />
+            <Route
+              path='/admin/products'
+              component={ProductsScreenAdmin}
+              exact
+            />
+          </Switch>
         </Container>
       </main>
       <Footer />

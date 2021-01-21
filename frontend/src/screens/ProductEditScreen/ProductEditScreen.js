@@ -128,7 +128,7 @@ const ProductEditScreen = ({ match }) => {
           <Message variant='danger'>{error}</Message>
         ) : (
           <>
-            <h2>ID: {product._id}</h2>
+            <h2 className='mb-3'>ID: {product._id}</h2>
             {update_success && (
               <Message variant='success'>Updated Successfuly</Message>
             )}

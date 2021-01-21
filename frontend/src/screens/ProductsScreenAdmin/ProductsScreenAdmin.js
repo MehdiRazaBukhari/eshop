@@ -1,4 +1,4 @@
-import { Container, ListGroup, Table } from 'react-bootstrap'
+import { Button, Col, Container, ListGroup, Row, Table } from 'react-bootstrap'
 import User from '../../components/User/User'
 import { useSelector, useDispatch } from 'react-redux'
 import getUsers from '../../Redux/Actions/getUsers'
@@ -7,6 +7,7 @@ import Loading from '../../components/Loading/Loading'
 import Message from '../../components/Message/Message'
 import getProductsList from '../../Redux/Actions/getProductsList'
 import ProductListItem from '../../components/ProductListItem/ProductListItem'
+import { Link } from 'react-router-dom'
 
 const ProductsScreenAdmin = ({ history }) => {
   const productList = useSelector((state) => state.productList)
@@ -39,9 +40,17 @@ const ProductsScreenAdmin = ({ history }) => {
           <Message variant='danger'>{error}</Message>
         ) : (
           <>
-            <h1>Products</h1>
-
-            <Table striped bordered hover size='sm'>
+            <Row>
+              <Col xs={12} sm={12} md={9} lg={9} xl={9}>
+                <h1>Products</h1>
+              </Col>
+              <Col xs={12} sm={12} md={3} lg={3} xl={3} className='text-right'>
+                <Link to='/admin/products/add'>
+                  <Button variant='dark'>Add New Product</Button>
+                </Link>
+              </Col>
+            </Row>
+            <Table striped bordered hover size='sm' className='mt-3'>
               <thead>
                 <tr>
                   <th>ID</th>
@@ -49,6 +58,8 @@ const ProductsScreenAdmin = ({ history }) => {
                   <th>PRICE ($)</th>
                   <th>CATEGORY</th>
                   <th>STOCK</th>
+                  <th></th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>

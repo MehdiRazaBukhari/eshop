@@ -7,12 +7,15 @@ const verifyToken = require('../utils/verifyToken')
 const updateProfileByAdmin = require('../controller/updateProfileByAdmin')
 const getProfileByAdmin = require('../controller/getProfileByAdmin')
 const updateProduct = require('../controller/updateProduct')
+const addProduct = require('../controller/addProduct')
 
 adminRouter.route('/users').get(verifyToken, isAdmin, getUsers)
 adminRouter.route('/users/:id').get(verifyToken, isAdmin, getProfileByAdmin)
 adminRouter
   .route('/users/update/:id')
   .post(verifyToken, isAdmin, updateProfileByAdmin)
+
+adminRouter.route('/products/add').post(verifyToken, isAdmin, addProduct)
 
 adminRouter
   .route('/products/update/:id')
