@@ -15,6 +15,7 @@ import myOrdersReducer from './myOrdersReducer'
 import usersReducer from './usersReducer'
 import profileUpdateByAdminReducer from './profileUpdateByAdminReducer'
 import profileByAdminReducer from './profileByAdminReducer'
+import updateProductReducer from './updateProductReducer'
 const reducer = combineReducers({
   productList: productListReducer,
   productDetail: productDetailReducer,
@@ -32,6 +33,7 @@ const reducer = combineReducers({
   users: usersReducer,
   profileByAdmin: profileByAdminReducer,
   profileUpdateByAdmin: profileUpdateByAdminReducer,
+  updateProduct: updateProductReducer,
 })
 
 export default reducer

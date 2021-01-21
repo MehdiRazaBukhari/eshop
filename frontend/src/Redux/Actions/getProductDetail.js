@@ -7,7 +7,13 @@ const getProductDetail = (id) => async (dispatch) => {
 
     dispatch({ type: 'PRODUCT_DETAIL_SUCCESS', payload: response.data.product })
   } catch (error) {
-    dispatch({ type: 'PRODUCT_DETAIL_FAIL', payload: error })
+    dispatch({
+      type: 'PRODUCT_DETAIL_FAIL',
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    })
   }
 }
 

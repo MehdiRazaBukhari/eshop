@@ -6,11 +6,16 @@ const getUsers = require('../controller/getUsers')
 const verifyToken = require('../utils/verifyToken')
 const updateProfileByAdmin = require('../controller/updateProfileByAdmin')
 const getProfileByAdmin = require('../controller/getProfileByAdmin')
+const updateProduct = require('../controller/updateProduct')
 
 adminRouter.route('/users').get(verifyToken, isAdmin, getUsers)
 adminRouter.route('/users/:id').get(verifyToken, isAdmin, getProfileByAdmin)
 adminRouter
   .route('/users/update/:id')
   .post(verifyToken, isAdmin, updateProfileByAdmin)
+
+adminRouter
+  .route('/products/update/:id')
+  .post(verifyToken, isAdmin, updateProduct)
 
 module.exports = adminRouter

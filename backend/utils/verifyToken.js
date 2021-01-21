@@ -12,7 +12,12 @@ const verifyToken = asyncHandler(async (req, res, next) => {
     try {
       const decoded = jwt.verify(token, process.env.JWT_SECRET)
       const { id } = decoded
-      req.user = await User.findOne({ _id: id }).select('-password')
+      user = await User.findOne({ _id: id }).select('-password')
+      if (!user) {
+        res.status(404)
+        throw new Error('Not authorized, token failed')
+      }
+      req.user = user
       next()
     } catch (error) {
       res.status(401)

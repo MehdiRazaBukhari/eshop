@@ -6,6 +6,8 @@ const productDetailReducer = (state = { product: {} }, action) => {
       return { loading: false, product: action.payload }
     case 'PRODUCT_DETAIL_FAIL':
       return { loading: false, error: action.payload }
+    case 'PRODUCT_DETAIL_RESET':
+      return { product: {} }
     default:
       return state
   }

@@ -20,7 +20,6 @@ const UsersScreen = ({ history }) => {
 
   useEffect(() => {
     if (loading) {
-      console.log('aaa')
       dispatch(getUsers())
     }
   }, [dispatch, loading])

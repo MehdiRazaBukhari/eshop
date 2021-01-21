@@ -17,6 +17,8 @@ import OrderById from './screens/OrderById/OrderById'
 import MyOrders from './screens/MyOrders/MyOrders'
 import UsersScreen from './screens/UsersScreen/UsersScreen'
 import ProfileByAdminScreen from './screens/ProfileByAdminScreen/ProfileByAdminScreen'
+import ProductsScreenAdmin from './screens/ProductsScreenAdmin/ProductsScreenAdmin'
+import ProductEditScreen from './screens/ProductEditScreen/ProductEditScreen'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 function App() {
@@ -39,6 +41,12 @@ function App() {
           <Route path='/myorders' component={MyOrders} />
           <Route path='/admin/users' component={UsersScreen} exact />
           <Route path='/admin/users/:id' component={ProfileByAdminScreen} />
+          <Route path='/admin/products' component={ProductsScreenAdmin} exact />
+          <Route
+            path='/admin/products/:id'
+            component={ProductEditScreen}
+            exact
+          />
         </Container>
       </main>
       <Footer />

@@ -6,7 +6,7 @@ const { products } = require('./data/products')
 const User = require('./db/models/User')
 const Product = require('./db/models/Product')
 const Order = require('./db/models/Order')
-const Connect_DB = require('./db/db_connect')
+const Connect_DB = require('./db/Connect_DB')
 dotenv.config()
 
 Connect_DB(process.env.MONGO_URI)
