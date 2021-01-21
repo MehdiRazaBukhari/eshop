@@ -7,15 +7,29 @@ import Loading from '../../components/Loading/Loading'
 import Message from '../../components/Message/Message'
 import getProductsList from '../../Redux/Actions/getProductsList'
 import ProductListItem from '../../components/ProductListItem/ProductListItem'
+import resetDeleteProduct from '../../Redux/Actions/resetDeleteProduct'
+import resetProductList from '../../Redux/Actions/resetProductList'
+
 import { Link } from 'react-router-dom'
 
 const ProductsScreenAdmin = ({ history }) => {
   const productList = useSelector((state) => state.productList)
   const { loading, products, error, reset } = productList
   const dispatch = useDispatch()
-
+  const {
+    loading: delete_loading,
+    success: delete_success,
+    error: delete_error,
+  } = useSelector((state) => state.deleteProduct)
   const { user } = useSelector((state) => state.loggedUser)
   const [isAdmin, setisAdmin] = useState(user.isAdmin)
+
+  useEffect(() => {
+    if (delete_success) {
+      dispatch(resetDeleteProduct())
+      dispatch(resetProductList())
+    }
+  }, [delete_success, dispatch])
 
   useEffect(() => {
     if (isAdmin && reset) {
@@ -40,7 +54,7 @@ const ProductsScreenAdmin = ({ history }) => {
           <Message variant='danger'>{error}</Message>
         ) : (
           <>
-            <Row>
+            <Row className='mb-3'>
               <Col xs={12} sm={12} md={9} lg={9} xl={9}>
                 <h1>Products</h1>
               </Col>
@@ -50,6 +64,7 @@ const ProductsScreenAdmin = ({ history }) => {
                 </Link>
               </Col>
             </Row>
+            {delete_error && <Message variant='danger'>{delete_error}</Message>}
             <Table striped bordered hover size='sm' className='mt-3'>
               <thead>
                 <tr>

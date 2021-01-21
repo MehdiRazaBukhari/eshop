@@ -6,7 +6,7 @@ import Loading from '../../components/Loading/Loading'
 import Message from '../../components/Message/Message'
 import resetUpdateProduct from '../../Redux/Actions/resetUpdateProduct'
 import updateProduct from '../../Redux/Actions/updateProduct'
-import resetProductDetail from '../../Redux/Actions/resetProductDetail'
+import resetProductList from '../../Redux/Actions/resetProductList'
 
 const ProductEditScreen = ({ match }) => {
   const id = match.params.id
@@ -38,13 +38,13 @@ const ProductEditScreen = ({ match }) => {
   }, [product])
 
   // useEffect(() => () => dispatch(resetProductDetail()), [dispatch])
-  useEffect(
-    () => () => () => {
-      dispatch(resetProductDetail())
+
+  useEffect(() => {
+    if (update_success) {
       dispatch(resetUpdateProduct())
-    },
-    [dispatch]
-  )
+      dispatch(resetProductList())
+    }
+  }, [update_success, dispatch])
   useEffect(() => {
     dispatch(getProductDetail(id))
   }, [id, dispatch])

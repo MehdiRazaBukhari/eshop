@@ -7,7 +7,7 @@ const productListReducer = (state = { products: [], reset: true }, action) => {
     case 'PRODUCT_LIST_FAIL':
       return { loading: false, error: action.payload }
     case 'PRODUCT_LIST_RESET':
-      return { reset: true }
+      return { products: [], reset: true }
     default:
       return state
   }

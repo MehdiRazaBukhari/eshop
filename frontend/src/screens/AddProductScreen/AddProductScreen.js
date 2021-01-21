@@ -5,6 +5,8 @@ import Loading from '../../components/Loading/Loading'
 import Message from '../../components/Message/Message'
 import addProduct from '../../Redux/Actions/addProduct'
 import resetAddProduct from '../../Redux/Actions/resetAddProduct'
+// import resetUpdateProduct from '../../Redux/Actions/resetUpdateProduct'
+import resetProductList from '../../Redux/Actions/resetProductList'
 const AddProductScreen = ({ history }) => {
   const { user } = useSelector((state) => state.loggedUser)
 
@@ -23,6 +25,13 @@ const AddProductScreen = ({ history }) => {
   let [category, setCategory] = useState('')
 
   useEffect(() => () => dispatch(resetAddProduct()), [dispatch])
+  useEffect(() => {
+    if (id) {
+      // dispatch(resetUpdateProduct())
+      dispatch(resetProductList())
+    }
+  }, [id, dispatch])
+
   useEffect(() => {
     if (id) {
       history.push(`/admin/products/${id}`)
@@ -53,7 +62,6 @@ const AddProductScreen = ({ history }) => {
           countInStock,
         }
         setInputErrorMessage(null)
-        console.log(product)
         dispatch(addProduct(product))
       } catch (error) {
         setInputErrorMessage('Please check your inputs!')
