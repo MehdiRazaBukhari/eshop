@@ -46,7 +46,16 @@ const PlaceOrder = ({ history, match }) => {
   return (
     <>
       {error && <Message variant='danger'>{error}</Message>}
-      {loading && <Loading />}
+      {loading && (
+        <div
+          className='d-flex justify-content-center'
+          style={{
+            paddingTop: '30vh',
+          }}
+        >
+          <Loading />
+        </div>
+      )}
       {!orderById ? null : (
         <>
           <Container className='mt-5'>

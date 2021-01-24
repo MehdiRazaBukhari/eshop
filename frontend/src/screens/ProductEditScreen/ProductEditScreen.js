@@ -7,6 +7,7 @@ import Message from '../../components/Message/Message'
 import resetUpdateProduct from '../../Redux/Actions/resetUpdateProduct'
 import updateProduct from '../../Redux/Actions/updateProduct'
 import resetProductList from '../../Redux/Actions/resetProductList'
+import axios from 'axios'
 
 const ProductEditScreen = ({ match }) => {
   const id = match.params.id
@@ -56,6 +57,7 @@ const ProductEditScreen = ({ match }) => {
   let [brand, setBrand] = useState('')
   let [countInStock, setCountInStock] = useState('')
   let [category, setCategory] = useState('')
+  const [uploading, setUploading] = useState()
 
   const handleUpdate = (e) => {
     e.preventDefault()
@@ -117,11 +119,45 @@ const ProductEditScreen = ({ match }) => {
     setCategory(e.target.value)
   }
 
+  const handleImageUpload = async (e) => {
+    const file = e.target.files[0]
+    const formData = new FormData()
+    formData.append('image', file)
+    setUploading(true)
+
+    try {
+      const config = {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      }
+
+      const { data } = await axios.post(
+        `http://localhost:55555/uploads`,
+        formData,
+        config
+      )
+
+      setImage(data)
+      setUploading(false)
+    } catch (error) {
+      console.log(error)
+      setUploading(false)
+    }
+  }
+
   return (
     <>
       <Container className='mt-5'>
         {loading ? (
-          <Loading />
+          <div
+            className='d-flex justify-content-center'
+            style={{
+              paddingTop: '30vh',
+            }}
+          >
+            <Loading />
+          </div>
         ) : !isAdmin ? (
           <Message variant='danger'>Not Admin!</Message>
         ) : error ? (
@@ -164,12 +200,19 @@ const ProductEditScreen = ({ match }) => {
 
               <Form.Group>
                 <Form.Label>Image</Form.Label>
+                {uploading && (
+                  <div className='text-right'>
+                    <Loading type='ThreeDots' height='25' />
+                  </div>
+                )}
                 <Form.Control
                   type='text'
                   as='input'
                   value={image}
                   onChange={handleImage}
                 ></Form.Control>
+
+                <Form.File id='image' onChange={handleImageUpload}></Form.File>
               </Form.Group>
 
               <Form.Group>

@@ -16,7 +16,12 @@ const HomeScreen = () => {
   return (
     <>
       {loading ? (
-        <div className='d-flex justify-content-center'>
+        <div
+          className='d-flex justify-content-center'
+          style={{
+            paddingTop: '30vh',
+          }}
+        >
           <Loading />
         </div>
       ) : error ? (

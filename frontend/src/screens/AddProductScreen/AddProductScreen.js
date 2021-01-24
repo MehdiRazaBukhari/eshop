@@ -7,6 +7,7 @@ import addProduct from '../../Redux/Actions/addProduct'
 import resetAddProduct from '../../Redux/Actions/resetAddProduct'
 // import resetUpdateProduct from '../../Redux/Actions/resetUpdateProduct'
 import resetProductList from '../../Redux/Actions/resetProductList'
+import axios from 'axios'
 const AddProductScreen = ({ history }) => {
   const { user } = useSelector((state) => state.loggedUser)
 
@@ -15,7 +16,7 @@ const AddProductScreen = ({ history }) => {
   const [inputErrorMessage, setInputErrorMessage] = useState(false)
   const dispatch = useDispatch()
   const { id, error, loading } = useSelector((state) => state.addProduct)
-
+  const [uploading, setUploading] = useState()
   let [name, setName] = useState('')
   let [description, setDescription] = useState('')
   let [price, setPrice] = useState('')
@@ -91,6 +92,33 @@ const AddProductScreen = ({ history }) => {
     setCategory(e.target.value)
   }
 
+  const handleImageUpload = async (e) => {
+    const file = e.target.files[0]
+    const formData = new FormData()
+    formData.append('image', file)
+    setUploading(true)
+
+    try {
+      const config = {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      }
+
+      const { data } = await axios.post(
+        `http://localhost:55555/uploads`,
+        formData,
+        config
+      )
+
+      setImage(data)
+      setUploading(false)
+    } catch (error) {
+      console.log(error)
+      setUploading(false)
+    }
+  }
+
   return (
     <>
       <Container className='mt-5'>
@@ -128,12 +156,19 @@ const AddProductScreen = ({ history }) => {
 
           <Form.Group>
             <Form.Label>Image</Form.Label>
+            {uploading && (
+              <div className='text-right'>
+                <Loading type='ThreeDots' height='25' />
+              </div>
+            )}
             <Form.Control
               type='text'
               as='input'
               value={image}
               onChange={handleImage}
             ></Form.Control>
+
+            <Form.File id='image' onChange={handleImageUpload}></Form.File>
           </Form.Group>
 
           <Form.Group>

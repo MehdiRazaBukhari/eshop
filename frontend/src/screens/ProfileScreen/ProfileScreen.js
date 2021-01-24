@@ -89,7 +89,15 @@ const ProfileScreen = ({ history }) => {
       <Row className='mt-5'>
         <Col sm={12} md={5} l={5} xl={5}>
           {loading ? (
-            <Loading />
+            <div
+              className='d-flex justify-content-center'
+              style={{
+                paddingTop: '30vh',
+                paddingLeft: '30vw',
+              }}
+            >
+              <Loading />
+            </div>
           ) : error ? (
             <Message variant='danger'>{error}</Message>
           ) : (

@@ -24,7 +24,7 @@ const updateProfile = asyncHandler(async (req, res) => {
   let exists
 
   if (userWithSameEmail) {
-    exists = userWithSameEmail._id == req.user._id ? false : true
+    exists = userWithSameEmail._id === req.user._id
   }
   if (exists) {
     res.status(400)

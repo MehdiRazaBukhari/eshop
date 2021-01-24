@@ -27,7 +27,14 @@ const UsersScreen = ({ history }) => {
     <>
       <Container className='mt-5'>
         {loading ? (
-          <Loading />
+          <div
+            className='d-flex justify-content-center'
+            style={{
+              paddingTop: '30vh',
+            }}
+          >
+            <Loading />
+          </div>
         ) : error ? (
           <Message variant='danger'>{error}</Message>
         ) : (

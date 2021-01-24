@@ -47,7 +47,14 @@ const ProductsScreenAdmin = ({ history }) => {
     <>
       <Container className='mt-5'>
         {loading ? (
-          <Loading />
+          <div
+            className='d-flex justify-content-center'
+            style={{
+              paddingTop: '30vh',
+            }}
+          >
+            <Loading />
+          </div>
         ) : !isAdmin ? (
           <Message variant='danger'>Not Admin!</Message>
         ) : error ? (

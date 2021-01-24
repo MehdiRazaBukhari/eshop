@@ -25,7 +25,12 @@ const ProductScreen = ({ match }) => {
         </Button>
       </Link>
       {loading ? (
-        <div className='d-flex justify-content-center'>
+        <div
+          className='d-flex justify-content-center'
+          style={{
+            paddingTop: '27vh',
+          }}
+        >
           <Loading />
         </div>
       ) : error ? (
