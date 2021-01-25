@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 import deleteFromCart from '../../Redux/Actions/deleteFromCart'
 const { ListGroup, Row, Col, Image, Form, Button } = require('react-bootstrap')
 
-const CartItem = ({ item, fixed }) => {
+const CartItem = ({ item, fixed, order }) => {
   const dispatch = useDispatch()
 
   const handleItemDelete = () => {
@@ -42,8 +42,12 @@ const CartItem = ({ item, fixed }) => {
               defaultValue={item ? item.qty : 0}
             >
               {[...Array(item.countInStock)].map((e, i) => (
-                <option key={i + 1} value={i + 1}>
-                  {i + 1}
+                <option
+                  key={i + 1}
+                  value={i + 1}
+                  defaultValue={item ? item.qty : 0}
+                >
+                  {order ? item.qty : i + 1}
                 </option>
               ))}
             </Form.Control>
@@ -60,5 +64,6 @@ const CartItem = ({ item, fixed }) => {
 }
 CartItem.setDefaultProps = {
   fixed: false,
+  order: false,
 }
 export default CartItem

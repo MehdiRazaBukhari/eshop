@@ -112,6 +112,7 @@ const PlaceOrder = ({ history, match }) => {
                               item={item}
                               fixed={true}
                               key={item.product}
+                              order={true}
                             />
                           ))}
                         </Col>
