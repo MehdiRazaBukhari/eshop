@@ -5,14 +5,18 @@ MERN E-COMMERCE SITE
 
 ### Sample View
 
+> /
+
 <div style="text-align:center">
 <img src="./sample_view/1.gif" alt="gif showing sample" width="943" height="466" alin="center">
 </div>
 
 <br>
 
+> /
+
 <div style="text-align:center">
-<img src="./sample_view/2.gif" alt="gif showing sample" width="1916" height="1008" alin="center">
+<img src="./sample_view/2.gif" alt="gif showing sample" width="943" height="466" alin="center">
 </div>
 
 # Features
