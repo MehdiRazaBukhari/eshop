@@ -2,6 +2,7 @@ import React from 'react'
 import { Col, ListGroup, Row, Button } from 'react-bootstrap'
 import CartItem from '../../components/CartItem/CartItem'
 import { useSelector } from 'react-redux'
+import HelmetTag from '../../components/HelmetTag/HelmetTag'
 const CartScreen = ({ history }) => {
   const { cartItems } = useSelector((state) => state.cart)
   const CheckOutHandler = () => {
@@ -9,6 +10,8 @@ const CartScreen = ({ history }) => {
   }
   return (
     <>
+      <HelmetTag title='My Cart' />
+
       <h1>SHOPPING CART</h1>
 
       {cartItems && cartItems.length ? (

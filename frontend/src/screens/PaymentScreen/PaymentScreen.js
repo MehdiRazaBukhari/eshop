@@ -4,6 +4,7 @@ import FormContainer from '../../components/FormContainer/FormContainer'
 import { useSelector, useDispatch } from 'react-redux'
 import setPaymentMethod from '../../Redux/Actions/setPaymentMethod'
 import CheckoutSteps from '../../components/CheckoutSteps/CheckoutSteps'
+import HelmetTag from '../../components/HelmetTag/HelmetTag'
 const PaymentScreen = ({ history }) => {
   const { user } = useSelector((state) => state.loggedUser)
   const savedPaymentMethod = useSelector((state) => state.paymentMethod)
@@ -30,6 +31,8 @@ const PaymentScreen = ({ history }) => {
   }, [history, user])
   return (
     <>
+      <HelmetTag title='Payment' />
+
       {!user ? null : (
         <FormContainer>
           <CheckoutSteps one={false} two={false} three={false} />
@@ -70,7 +73,7 @@ const PaymentScreen = ({ history }) => {
 
             <Button
               type='submit'
-              variant='primary'
+              variant='dark'
               className='mt-3'
               disabled={method.length > 0 ? false : true}
             >

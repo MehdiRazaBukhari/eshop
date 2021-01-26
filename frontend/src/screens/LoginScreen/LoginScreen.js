@@ -7,6 +7,7 @@ import Loading from '../../components/Loading/Loading'
 import { Link } from 'react-router-dom'
 import FormContainer from '../../components/FormContainer/FormContainer'
 import CheckoutSteps from '../../components/CheckoutSteps/CheckoutSteps'
+import HelmetTag from '../../components/HelmetTag/HelmetTag'
 
 const LoginScreen = ({ history, location }) => {
   const [email, setEmail] = useState('')
@@ -50,21 +51,27 @@ const LoginScreen = ({ history, location }) => {
   }, [user, history, redirect])
   return (
     <>
-      <FormContainer>
-        {redirect === 'shipping' ? <CheckoutSteps one={false} /> : null}
-        {loading && (
-          <div className='text-right'>
-            <Loading type='ThreeDots' height='20' />
-          </div>
-        )}
+      <HelmetTag title='Login' />
 
-        {error && <Message variant='danger'>{error}</Message>}
-        {inputErrorMessage.length > 0 && (
-          <Message variant='warning'>{inputErrorMessage}</Message>
-        )}
+      <FormContainer>
+        {redirect === 'shipping' ? (
+          <div className='mb-5'>
+            <CheckoutSteps one={false} />
+          </div>
+        ) : null}
+
         <Form className='mt-5'>
           <h1>Login</h1>
           <Form.Group>
+            {loading && (
+              <div className='text-right'>
+                <Loading type='ThreeDots' height='20' />
+              </div>
+            )}
+            {inputErrorMessage.length > 0 && (
+              <Message variant='warning'>{inputErrorMessage}</Message>
+            )}
+            {error && <Message variant='danger'>{error}</Message>}
             <Form.Label>Email Address</Form.Label>
             <Form.Control
               type='email'

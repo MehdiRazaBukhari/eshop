@@ -4,6 +4,7 @@ import FormContainer from '../../components/FormContainer/FormContainer'
 import { useSelector, useDispatch } from 'react-redux'
 import saveShippingAddress from '../../Redux/Actions/saveShippingAddress'
 import CheckoutSteps from '../../components/CheckoutSteps/CheckoutSteps'
+import HelmetTag from '../../components/HelmetTag/HelmetTag'
 const ShippingScreen = ({ history }) => {
   const { user } = useSelector((state) => state.loggedUser)
   const shippingAddress = useSelector((state) => state.shippingAddress)
@@ -42,6 +43,8 @@ const ShippingScreen = ({ history }) => {
   }, [history, user])
   return (
     <>
+      <HelmetTag title='Shipping' />
+
       {!user ? null : (
         <FormContainer>
           <CheckoutSteps one={false} two={false} />

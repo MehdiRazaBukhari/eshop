@@ -1,20 +1,49 @@
 import React, { useEffect } from 'react'
-import { Col, Row } from 'react-bootstrap'
+import { Button, Col, Row } from 'react-bootstrap'
 import Product from '../../components/Product/Product'
 import { useDispatch, useSelector } from 'react-redux'
 import getProductsList from '../../Redux/Actions/getProductsList'
 import Loading from '../../components/Loading/Loading'
 import Message from '../../components/Message/Message'
-const HomeScreen = () => {
+import getTopProducts from '../../Redux/Actions/getTopProducts'
+import MainCarousel from '../../components/MainCarousel/MainCarousel'
+import HelmetTag from '../../components/HelmetTag/HelmetTag'
+import { Link } from 'react-router-dom'
+
+const HomeScreen = ({ match }) => {
+  const keyword = match.params.keyword ? match.params.keyword : ''
   const productList = useSelector((state) => state.productList)
-  const { loading, products, error } = productList
   const dispatch = useDispatch()
+  const {
+    loading: top_loading,
+    success: top_success,
+    error: top_error,
+    topProducts,
+  } = useSelector((state) => state.topProducts)
+
   useEffect(() => {
-    dispatch(getProductsList())
+    dispatch(getTopProducts())
   }, [dispatch])
+
+  const { loading, products, error } = productList
+  useEffect(() => {
+    dispatch(getProductsList(keyword))
+  }, [dispatch, keyword])
 
   return (
     <>
+      <HelmetTag />
+
+      {keyword && (
+        <Link to='/'>
+          <Button variant='light' className='mb-2'>
+            Go Back
+          </Button>
+        </Link>
+      )}
+      {top_success && !keyword.length && (
+        <MainCarousel products={topProducts} />
+      )}
       {loading ? (
         <div
           className='d-flex justify-content-center'
@@ -28,7 +57,7 @@ const HomeScreen = () => {
         <Message variant='danger'>{error}</Message>
       ) : (
         <>
-          <h1>Products</h1>
+          <h1 className='mt-2'>Products</h1>
 
           <Row>
             {products.length

@@ -8,6 +8,7 @@ import resetUpdateProduct from '../../Redux/Actions/resetUpdateProduct'
 import updateProduct from '../../Redux/Actions/updateProduct'
 import resetProductList from '../../Redux/Actions/resetProductList'
 import axios from 'axios'
+import HelmetTag from '../../components/HelmetTag/HelmetTag'
 
 const ProductEditScreen = ({ match }) => {
   const id = match.params.id
@@ -38,11 +39,11 @@ const ProductEditScreen = ({ match }) => {
     }
   }, [product])
 
-  // useEffect(() => () => dispatch(resetProductDetail()), [dispatch])
+  useEffect(() => () => dispatch(resetUpdateProduct()), [dispatch])
 
   useEffect(() => {
     if (update_success) {
-      dispatch(resetUpdateProduct())
+      // dispatch(resetUpdateProduct())
       dispatch(resetProductList())
     }
   }, [update_success, dispatch])
@@ -164,7 +165,9 @@ const ProductEditScreen = ({ match }) => {
           <Message variant='danger'>{error}</Message>
         ) : (
           <>
-            <h2 className='mb-3'>ID: {product._id}</h2>
+            <HelmetTag title={`Admin | Update ${name}`} />
+
+            <h2 className='mb-3'>ID {product._id}</h2>
             {update_success && (
               <Message variant='success'>Updated Successfuly</Message>
             )}

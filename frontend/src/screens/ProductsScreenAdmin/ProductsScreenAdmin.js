@@ -11,6 +11,7 @@ import resetDeleteProduct from '../../Redux/Actions/resetDeleteProduct'
 import resetProductList from '../../Redux/Actions/resetProductList'
 
 import { Link } from 'react-router-dom'
+import HelmetTag from '../../components/HelmetTag/HelmetTag'
 
 const ProductsScreenAdmin = ({ history }) => {
   const productList = useSelector((state) => state.productList)
@@ -45,6 +46,8 @@ const ProductsScreenAdmin = ({ history }) => {
   }, [history, user])
   return (
     <>
+      <HelmetTag title='Admin | Product List' />
+
       <Container className='mt-5'>
         {loading ? (
           <div

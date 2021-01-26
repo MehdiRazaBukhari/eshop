@@ -1,8 +1,11 @@
 const express = require('express')
 const productRouter = express.Router()
+const verifyToken = require('../utils/verifyToken')
 
 const getProduct = require('../controller/getProduct')
 const getProductById = require('../controller/getProductById')
+const addReview = require('../controller/addReview')
+const getTopProducts = require('../controller/getTopProducts')
 
 /**
  * Route serving specific product.
@@ -15,6 +18,9 @@ const getProductById = require('../controller/getProductById')
  * @param {callback} middleware - Express middleware.
  */
 productRouter.route('/').get(getProduct)
+productRouter.route('/top').get(getTopProducts)
+
+productRouter.route('/:id/reviews').post(verifyToken, addReview)
 
 /**
  * Route serving specific product.

@@ -7,6 +7,7 @@ import CartItem from '../../components/CartItem/CartItem'
 import addOrder from '../../Redux/Actions/addOrder'
 import Message from '../../components/Message/Message'
 import resetCart from '../../Redux/Actions/resetCart'
+import HelmetTag from '../../components/HelmetTag/HelmetTag'
 
 const PlaceOrder = ({ history }) => {
   const { user } = useSelector((state) => state.loggedUser)
@@ -71,6 +72,8 @@ const PlaceOrder = ({ history }) => {
     <>
       {!user ? null : (
         <>
+          <HelmetTag title='Place Order' />
+
           <FormContainer>
             <CheckoutSteps one={false} two={false} three={false} four={false} />
           </FormContainer>

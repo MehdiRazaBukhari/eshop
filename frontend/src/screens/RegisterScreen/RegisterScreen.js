@@ -4,6 +4,7 @@ import Message from '../../components/Message/Message'
 import registerUser from '../../Redux/Actions/registerUser'
 import { useDispatch, useSelector } from 'react-redux'
 import Loading from '../../components/Loading/Loading'
+import HelmetTag from '../../components/HelmetTag/HelmetTag'
 
 const RegisterScreen = ({ history }) => {
   const [name, setName] = useState('')
@@ -43,6 +44,8 @@ const RegisterScreen = ({ history }) => {
 
   return (
     <>
+      <HelmetTag title='Register to E-Shop' />
+
       <Row className='mt-5'>
         <Col sm={12} md={6} lg={6} xl={6}>
           {loading && <Loading />}

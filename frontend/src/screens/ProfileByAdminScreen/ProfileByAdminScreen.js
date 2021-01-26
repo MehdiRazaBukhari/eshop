@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import getProfileByAdmin from '../../Redux/Actions/getProfileByAdmin'
 import updateUserProfileByAdmin from '../../Redux/Actions/updateUserProfileByAdmin'
 import deleteStoredProfileByAdmin from '../../Redux/Actions/deleteStoredProfileByAdmin'
+import HelmetTag from '../../components/HelmetTag/HelmetTag'
 const ProfileByAdminScreen = ({ history, match }) => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
@@ -93,15 +94,24 @@ const ProfileByAdminScreen = ({ history, match }) => {
 
   return (
     <>
-      <h1 className='mt-5'>User Profile</h1>
       <Row className='mt-5'>
         <Col sm={12} md={6} l={6} xl={6}>
           {loading ? (
-            <Loading />
+            <div
+              className='d-flex justify-content-center'
+              style={{
+                paddingTop: '25vh',
+                paddingLeft: '32vw',
+              }}
+            >
+              <Loading />
+            </div>
           ) : error ? (
             <Message variant='danger'>{error}</Message>
           ) : (
             <>
+              <HelmetTag title={`Admin | ${name}`} />
+
               {update_success && (
                 <Message variant='success'>Updated Successfuly</Message>
               )}
@@ -113,6 +123,7 @@ const ProfileByAdminScreen = ({ history, match }) => {
                   <Loading type='ThreeDots' height='25' />
                 </div>
               )}
+              <h1 className='mt-5'>User Profile</h1>
               <Form>
                 {inputErrorMessage && (
                   <Message variant='danger'>{inputErrorMessage}</Message>

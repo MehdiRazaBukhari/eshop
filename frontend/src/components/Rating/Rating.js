@@ -6,7 +6,11 @@ const Rating = ({ rating, numReviews }) => {
       {[...Array(5)].map((e, i) => (
         <Star rating={rating} index={i} key={i} />
       ))}{' '}
-      {numReviews} reviews
+      {numReviews
+        ? numReviews > 1
+          ? `${numReviews} reviews`
+          : `${numReviews} review`
+        : null}
     </div>
   )
 }

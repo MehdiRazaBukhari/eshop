@@ -8,6 +8,7 @@ import { PayPalButton } from 'react-paypal-button-v2'
 import { Col, Container, ListGroup, Row } from 'react-bootstrap'
 import Loading from '../../components/Loading/Loading'
 import resetOrderById from '../../Redux/Actions/resetOrderById'
+import HelmetTag from '../../components/HelmetTag/HelmetTag'
 const PlaceOrder = ({ history, match }) => {
   const { loading, orderById, error } = useSelector((state) => state.orderById)
 
@@ -45,6 +46,8 @@ const PlaceOrder = ({ history, match }) => {
 
   return (
     <>
+      <HelmetTag title='Order Info' />
+
       {error && <Message variant='danger'>{error}</Message>}
       {loading && (
         <div

@@ -58,6 +58,7 @@ function App() {
               component={ProductsScreenAdmin}
               exact
             />
+            <Route path='/search/:keyword' component={HomeScreen} exact />
           </Switch>
         </Container>
       </main>

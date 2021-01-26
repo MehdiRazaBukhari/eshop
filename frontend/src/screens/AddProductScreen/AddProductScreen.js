@@ -8,6 +8,7 @@ import resetAddProduct from '../../Redux/Actions/resetAddProduct'
 // import resetUpdateProduct from '../../Redux/Actions/resetUpdateProduct'
 import resetProductList from '../../Redux/Actions/resetProductList'
 import axios from 'axios'
+import HelmetTag from '../../components/HelmetTag/HelmetTag'
 const AddProductScreen = ({ history }) => {
   const { user } = useSelector((state) => state.loggedUser)
 
@@ -121,6 +122,8 @@ const AddProductScreen = ({ history }) => {
 
   return (
     <>
+      <HelmetTag title='Add Product' />
+
       <Container className='mt-5'>
         <h2 className='mb-3'>ADD ITEM</h2>
         {id && <Message variant='success'>Added Successfuly</Message>}

@@ -5,6 +5,7 @@ import getUsers from '../../Redux/Actions/getUsers'
 import { useEffect } from 'react'
 import Loading from '../../components/Loading/Loading'
 import Message from '../../components/Message/Message'
+import HelmetTag from '../../components/HelmetTag/HelmetTag'
 
 const UsersScreen = ({ history }) => {
   const { users, error, loading } = useSelector((state) => state.users)
@@ -25,6 +26,8 @@ const UsersScreen = ({ history }) => {
   }, [dispatch, loading])
   return (
     <>
+      <HelmetTag title='Admin | Users List' />
+
       <Container className='mt-5'>
         {loading ? (
           <div

@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import getProfile from '../../Redux/Actions/getProfile'
 import updateUserProfile from '../../Redux/Actions/updateUserProfile'
 import deleteStoredProfile from '../../Redux/Actions/deleteStoredProfile'
+import HelmetTag from '../../components/HelmetTag/HelmetTag'
 
 const ProfileScreen = ({ history }) => {
   const [name, setName] = useState('')
@@ -102,10 +103,16 @@ const ProfileScreen = ({ history }) => {
             <Message variant='danger'>{error}</Message>
           ) : (
             <>
+              <HelmetTag title={`Profile | ${name}`} />
+
               {update_success ? (
                 <Message variant='success'>Profile updated successfuly</Message>
               ) : null}
-              {update_loading ? <Loading type='ThreeDots' height='20' /> : null}
+              {update_loading ? (
+                <div className='text-right'>
+                  <Loading type='ThreeDots' height='20' />
+                </div>
+              ) : null}
               {update_error ? (
                 <Message variant='danger'>{update_error}</Message>
               ) : null}

@@ -3,6 +3,8 @@ import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 import { useSelector, useDispatch } from 'react-redux'
 import logoutUser from '../../Redux/Actions/logoutUser'
+import SearchBar from '../SearchBar/SearchBar'
+import { Route } from 'react-router-dom'
 
 const Header = () => {
   const { user } = useSelector((state) => state.loggedUser)
@@ -17,7 +19,7 @@ const Header = () => {
         <LinkContainer to='/'>
           <Navbar.Brand>E-SHOP</Navbar.Brand>
         </LinkContainer>
-
+        <Route render={({ history }) => <SearchBar history={history} />} />
         <Navbar.Toggle aria-controls='basic-navbar-nav' />
         <Navbar.Collapse id='basic-navbar-nav'>
           <Nav className='ml-auto'>
