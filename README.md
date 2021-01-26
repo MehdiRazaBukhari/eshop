@@ -53,7 +53,9 @@ MERN E-COMMERCE SITE
 
 # Acknowledgments
 
-95% of code I coded myself, the Design, Model and Sample data was taken from Brad Traversy
+Model and Sample data was taken from Brad Traversy
 
 - Github: [@bradtraversy](https://github.com/bradtraversy)
 - Website: [traversy-media](http://traversymedia.com/)
+
+Design (Theming, layout etc) is also replica of his work.
