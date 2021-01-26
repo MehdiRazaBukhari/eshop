@@ -161,7 +161,7 @@ const ProfileScreen = ({ history }) => {
                 </Form.Group>
 
                 <div className='text-right'>
-                  <Button type='submit' onClick={handleSubmit}>
+                  <Button type='submit' onClick={handleSubmit} variant='dark'>
                     Update
                   </Button>
                 </div>

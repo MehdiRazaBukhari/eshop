@@ -153,6 +153,7 @@ const ProfileByAdminScreen = ({ history, match }) => {
                     type='checkbox'
                     label='Admin'
                     value={isAdmin}
+                    checked={isAdmin}
                     onChange={handleIsAdmin}
                   />
                 </Form.Group>
