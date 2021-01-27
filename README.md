@@ -5,13 +5,8 @@ MERN E-COMMERCE SITE
 
 ### DEMO
 
-> /
+> <a href='https://mehdirazabukhari.github.io/eshop'>See Demo</a>
 
-<div style="text-align:center">
-
-<a href='https://mehdirazabukhari.github.io/eshop'>See Demo</a>
-
-</div>
 
 # Features
 
