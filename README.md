@@ -8,7 +8,7 @@ MERN E-COMMERCE SITE
 > /
 
 <div style="text-align:center">
-<img src="./sample_view/1.gif" alt="gif showing sample" width="943" height="466" alin="center">
+<a href='./demo/demo1.html'>Demo One</a>
 </div>
 
 <br>
@@ -16,7 +16,9 @@ MERN E-COMMERCE SITE
 > /
 
 <div style="text-align:center">
-<img src="./sample_view/2.gif" alt="gif showing sample" width="943" height="466" alin="center">
+
+<a href='./demo/demo2.html'>Demo Two</a>
+
 </div>
 
 # Features
