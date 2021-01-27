@@ -3,21 +3,13 @@
 MERN E-COMMERCE SITE
 <br>
 
-### Sample View
-
-> /
-
-<div style="text-align:center">
-<a href='./demo/demo1.html'>Demo One</a>
-</div>
-
-<br>
+### DEMO
 
 > /
 
 <div style="text-align:center">
 
-<a href='./demo/demo2.html'>Demo Two</a>
+<a href='https://mehdirazabukhari.github.io/eshop'>See Demo</a>
 
 </div>
 
@@ -52,6 +44,7 @@ MERN E-COMMERCE SITE
 - Prettier
 - Eslint
 - React Helmet
+- POSTMAN
 
 # Acknowledgments
 
